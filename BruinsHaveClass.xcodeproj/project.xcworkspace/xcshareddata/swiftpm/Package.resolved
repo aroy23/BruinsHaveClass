@@ -1,0 +1,15 @@
+{
+  "originHash" : "405c2994d0ba397118f3813c8e1b6c534a1e9dc7e0ddc58325eafc9a67726fc5",
+  "pins" : [
+    {
+      "identity" : "bottombar-swiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/smartvipere75/bottombar-swiftui",
+      "state" : {
+        "branch" : "master",
+        "revision" : "26c5c48842632b39242bb268399651097ace653a"
+      }
+    }
+  ],
+  "version" : 3
+}

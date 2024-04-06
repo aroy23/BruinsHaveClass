@@ -11,6 +11,9 @@
 		47D3A0682BC1BE9600629FFF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D3A0672BC1BE9600629FFF /* ContentView.swift */; };
 		47D3A06A2BC1BE9700629FFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47D3A0692BC1BE9700629FFF /* Assets.xcassets */; };
 		47D3A06D2BC1BE9700629FFF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47D3A06C2BC1BE9700629FFF /* Preview Assets.xcassets */; };
+		47D3A0752BC1BFF700629FFF /* BottomBar-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 47D3A0742BC1BFF700629FFF /* BottomBar-SwiftUI */; };
+		47D3A0772BC1C08900629FFF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D3A0762BC1C08900629FFF /* HomeView.swift */; };
+		47D3A0792BC1C0DB00629FFF /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D3A0782BC1C0DB00629FFF /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,8 @@
 		47D3A0672BC1BE9600629FFF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		47D3A0692BC1BE9700629FFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47D3A06C2BC1BE9700629FFF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		47D3A0762BC1C08900629FFF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		47D3A0782BC1C0DB00629FFF /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47D3A0752BC1BFF700629FFF /* BottomBar-SwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +59,8 @@
 			children = (
 				47D3A0652BC1BE9600629FFF /* BruinsHaveClassApp.swift */,
 				47D3A0672BC1BE9600629FFF /* ContentView.swift */,
+				47D3A0762BC1C08900629FFF /* HomeView.swift */,
+				47D3A0782BC1C0DB00629FFF /* MapView.swift */,
 				47D3A0692BC1BE9700629FFF /* Assets.xcassets */,
 				47D3A06B2BC1BE9700629FFF /* Preview Content */,
 			);
@@ -83,6 +91,9 @@
 			dependencies = (
 			);
 			name = BruinsHaveClass;
+			packageProductDependencies = (
+				47D3A0742BC1BFF700629FFF /* BottomBar-SwiftUI */,
+			);
 			productName = BruinsHaveClass;
 			productReference = 47D3A0622BC1BE9600629FFF /* BruinsHaveClass.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +122,9 @@
 				Base,
 			);
 			mainGroup = 47D3A0592BC1BE9600629FFF;
+			packageReferences = (
+				47D3A0732BC1BFF700629FFF /* XCRemoteSwiftPackageReference "bottombar-swiftui" */,
+			);
 			productRefGroup = 47D3A0632BC1BE9600629FFF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +151,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47D3A0772BC1C08900629FFF /* HomeView.swift in Sources */,
 				47D3A0682BC1BE9600629FFF /* ContentView.swift in Sources */,
 				47D3A0662BC1BE9600629FFF /* BruinsHaveClassApp.swift in Sources */,
+				47D3A0792BC1C0DB00629FFF /* MapView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +358,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		47D3A0732BC1BFF700629FFF /* XCRemoteSwiftPackageReference "bottombar-swiftui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/smartvipere75/bottombar-swiftui";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		47D3A0742BC1BFF700629FFF /* BottomBar-SwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47D3A0732BC1BFF700629FFF /* XCRemoteSwiftPackageReference "bottombar-swiftui" */;
+			productName = "BottomBar-SwiftUI";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 47D3A05A2BC1BE9600629FFF /* Project object */;
 }

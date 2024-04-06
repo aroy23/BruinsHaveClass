@@ -1,10 +1,3 @@
-//
-//  MapView.swift
-//  BruinsHaveClass
-//
-//  Created by Arnav Roy on 4/6/24.
-//
-
 import SwiftUI
 import MapKit
 import BottomBar_SwiftUI
@@ -12,48 +5,54 @@ import BottomBar_SwiftUI
 struct MapView: View {
     let item: BottomBarItem
     @Binding var totalCoins: Int
-    
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
-        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-    ) // Default region (San Francisco) for initial display
-    
-    @State private var destination: String = "" // Destination entered by the user
+    @State private var locationName: String = ""
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 34.0689, longitude: -118.4452), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+    @State private var locations: [String: LocationCoordinate] = [:]
     
     var body: some View {
         VStack {
-            Map(coordinateRegion: $region, showsUserLocation: true)
-                .edgesIgnoringSafeArea(.all)
-                .frame(height: 300)
-                .cornerRadius(10)
+            Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: Array(locations.values)) { location in
+                MapPin(coordinate: location.coordinate)
+            }
+            .frame(height: 300)
+            .padding()
+            
+            TextField("Location Name", text: $locationName)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             
-            TextField("Enter Destination", text: $destination, onCommit: {
-                // Geocode the entered location and update region
-                geocodeAndSetRegion()
-            })
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-            .padding()
+            HStack {
+                Button("Add Pinpoint") {
+                    if locationName == "UCLA" {
+                        // Add coordinates for UCLA
+                        let uclaCoordinate = CLLocationCoordinate2D(latitude: 34.0689, longitude: -118.4452)
+                        self.locations[locationName] = LocationCoordinate(coordinate: uclaCoordinate)
+                    } else {
+                        // Convert location name to coordinates using geocoding
+                        let geocoder = CLGeocoder()
+                        geocoder.geocodeAddressString(locationName) { placemarks, error in
+                            if let placemark = placemarks?.first, let location = placemark.location {
+                                let coordinate = location.coordinate
+                                let newRegion = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+                                self.region = newRegion
+                                
+                                // Add location to the dictionary
+                                self.locations[locationName] = LocationCoordinate(coordinate: coordinate)
+                            }
+                        }
+                    }
+                }
+                .padding()
+                
+                Button("Remove All Pinpoints") {
+                    self.locations.removeAll()
+                }
+                .padding()
+            }
             
             Spacer()
         }
-        .navigationBarTitle(Text(item.title).bold())
-    }
-    
-    private func geocodeAndSetRegion() {
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(destination) { placemarks, error in
-            guard let placemark = placemarks?.first, let location = placemark.location else {
-                // Handle error or display alert
-                print("Error geocoding location:", error?.localizedDescription ?? "")
-                return
-            }
-            let coordinate = location.coordinate
-            region = MKCoordinateRegion(
-                center: coordinate,
-                span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-            )
-        }
+        .navigationTitle("Map")
     }
 }
 
@@ -63,4 +62,8 @@ struct MapView_Previews: PreviewProvider {
     }
 }
 
+struct LocationCoordinate: Identifiable {
+    let id = UUID()
+    let coordinate: CLLocationCoordinate2D
+}
 

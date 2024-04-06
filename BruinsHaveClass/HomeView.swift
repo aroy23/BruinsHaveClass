@@ -69,7 +69,7 @@ struct HomeView: View {
                 .padding()
             }
         }
-        .navigationBarTitle(Text(item.title).bold())
+        .navigationBarTitle(item.title)
     }
 }
 

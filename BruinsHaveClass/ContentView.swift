@@ -1,16 +1,11 @@
-//
-//  ContentView.swift
-//  BruinsHaveClass
-//
-//  Created by Arnav Roy on 4/6/24.
-//
-
 import SwiftUI
 import BottomBar_SwiftUI
 
 struct ContentView : View {
     @State private var selectedIndex: Int = 0
-    @State private var totalCoins: Int = 10000 // Initial total coins
+    @State private var totalCoins: Int = 0
+    @State private var bearsKilled: Int = 0
+    @State private var health: Double = 1.0
     
     let items: [BottomBarItem] = [
         BottomBarItem(icon: "house.fill", title: "Home", color: .purple),
@@ -26,10 +21,13 @@ struct ContentView : View {
         NavigationView {
             VStack {
                 if selectedItem.title == "Home" {
-                    HomeView(item: selectedItem, totalCoins: $totalCoins)
+                    HomeView(item: selectedItem, totalCoins: $totalCoins, bearsKilled: $bearsKilled, health: $health)
                 }
                 else if selectedItem.title == "Map" {
-                    MapView(item: selectedItem, totalCoins: $totalCoins)
+                    MapView(item: selectedItem, totalCoins: $totalCoins, bearsKilled: $bearsKilled, health: $health)
+                }
+                else if selectedItem.title == "Profile" {
+                    ProfileView(item: selectedItem, totalCoins: $totalCoins, bearsKilled: $bearsKilled, health: $health)
                 }
                 BottomBar(selectedIndex: $selectedIndex, items: items)
             }
@@ -52,4 +50,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-

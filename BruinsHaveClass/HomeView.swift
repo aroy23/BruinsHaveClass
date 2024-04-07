@@ -109,7 +109,7 @@ struct HomeView: View {
                 VStack {
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
                         ForEach(0..<4) { index in
-                            let caption = captions[index] // Access the caption at the current index
+                            let caption = captions[index]
                             
                             VStack {
                                 Image("customimage\(index)")

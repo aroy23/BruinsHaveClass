@@ -1,27 +1,35 @@
 import SwiftUI
 import BottomBar_SwiftUI
+import WebKit
 
+struct WebView: UIViewRepresentable {
+    let url: URL
+    
+    func makeUIView(context: Context) -> WKWebView {
+        let webView = WKWebView()
+        webView.load(URLRequest(url: url))
+        return webView
+    }
+    
+    func updateUIView(_ uiView: WKWebView, context: Context) {}
+}
 struct ProfileView: View {
     let item: BottomBarItem
     @Binding var totalCoins: Int
     @Binding var bearsKilled: Int
     @Binding var health: Double
 
-    // Sample user profile data
     @State private var profileData = ProfileData(name: "John Doe",
                                                  graduationYear: "2024",
                                                  totalCoins: 5000,
                                                  numberOfBearsKilled: 0)
-    @State private var selectedImage: UIImage? // Selected profile image
+    @State private var selectedImage: UIImage? 
 
-    // State variables to hold the user's input for the new values
     @State private var newName: String = ""
     @State private var newGraduationYear: String = ""
 
-    // State variable to track whether the update mode is active
     @State private var isUpdateMode: Bool = false
 
-    // State variable to track whether the image picker is active
     @State private var isImagePickerActive: Bool = false
 
     var body: some View {
@@ -31,7 +39,6 @@ struct ProfileView: View {
                     Spacer()
                     Button(action: {
                         isUpdateMode.toggle()
-                        // Reset new values when entering update mode
                         newName = profileData.name
                         newGraduationYear = profileData.graduationYear
                     }) {
@@ -40,13 +47,12 @@ struct ProfileView: View {
                             .padding(8)
                             .background(Color.blue)
                             .cornerRadius(8)
-                            .frame(minWidth: 0, maxWidth: 100) // Set max width to limit button size
-                            .padding(.trailing, 20) // Add trailing padding to move it to the right
+                            .frame(minWidth: 0, maxWidth: 100)
+                            .padding(.trailing, 20)
                     }
                 }
 
                 if !isUpdateMode {
-                    // Display the regular profile data
                     if let image = selectedImage {
                         Image(uiImage: image)
                             .resizable()
@@ -71,11 +77,14 @@ struct ProfileView: View {
                             .font(.title)
                         Text("Number of Bears Killed: \(bearsKilled)")
                             .font(.title)
+                        NavigationLink(destination: WebView(url: URL(string: "https://chdrj.github.io/SignIn-SignUp-Form/")!)) {
+                            Text("Visit Our Website to Save Progress")
+                                .font(.title)
+                                .foregroundColor(.blue)
+                        }
                     }
                 } else {
-                    // Display text fields to update the profile data
                     VStack {
-                        // Display profile image without allowing selection
                         if let image = selectedImage {
                             Image(uiImage: image)
                                 .resizable()
@@ -112,14 +121,12 @@ struct ProfileView: View {
                         .cornerRadius(8)
                 }
 
-                Spacer() // Add spacer to push the button to the bottom
-
+                Spacer()
                 if isUpdateMode {
                     Button(action: {
-                        // Save changes to the profile
                         profileData.name = newName
                         profileData.graduationYear = newGraduationYear
-                        isUpdateMode = false // Exit update mode
+                        isUpdateMode = false
                     }) {
                         Text("Save Changes")
                             .padding()
@@ -128,7 +135,6 @@ struct ProfileView: View {
                             .cornerRadius(8)
                     }
                 }
-                // Add dead bear image with name
                 ForEach(0..<profileData.numberOfBearsKilled, id: \.self) { index in
                     HStack {
                         Image("dead-bear")
@@ -151,7 +157,6 @@ struct ProfileView: View {
     }
 }
 
-// Sample user profile data
 struct ProfileData {
     var name: String
     var graduationYear: String
@@ -159,9 +164,9 @@ struct ProfileData {
     var numberOfBearsKilled: Int
 }
 
-// DO NOT TOUCH
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView(item: BottomBarItem(icon: "map.fill", title: "Map", color: .purple), totalCoins: .constant(10000), bearsKilled: .constant(10), health: .constant(1.0))
     }
 }
+

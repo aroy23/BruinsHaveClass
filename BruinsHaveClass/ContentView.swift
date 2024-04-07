@@ -41,6 +41,8 @@ struct ContentView : View {
                         .foregroundColor(.black)
                 }
             )
+            .background(Color(UIColor(red: 0.6, green: 0.9, blue: 1.0, alpha: 0.4)))
+            
         }
     }
 }

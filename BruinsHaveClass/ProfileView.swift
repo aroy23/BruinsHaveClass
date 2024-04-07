@@ -78,7 +78,7 @@ struct ProfileView: View {
                         Text("Number of Bears Killed: \(bearsKilled)")
                             .font(.title)
                         NavigationLink(destination: WebView(url: URL(string: "https://chdrj.github.io/SignIn-SignUp-Form/")!)) {
-                            Text("Visit Our Website to Save Progress")
+                            Text("Sign Up to Save Your Progress!")
                                 .font(.title)
                                 .foregroundColor(.blue)
                         }

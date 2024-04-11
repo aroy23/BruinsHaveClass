@@ -26,7 +26,7 @@ The premise of BruinsHaveClass revolves around attending classes at UCLA to keep
 - **MapKit**: Provides map interface for displaying and pinpointing class locations.
 - **Database Integration**: Stores and retrieves UCLA campus building names for mapping.
 - **User Profiles**: Allows customization for a personalized experience.
-- **Web Integration**: Utilizes **JavaScript**, **CSS**, and **HTML** for linked [website](https://github.com/chdrj/SignIn-SignUp-Form) to access detailed statistics, class sign-ups, and purchased items.
+- **Web Integration**: Utilizes **JavaScript**, **CSS**, and **HTML** for a linked [website](https://github.com/chdrj/SignIn-SignUp-Form) to access detailed statistics, class sign-ups, and purchased items.
 
 ## Setup Instructions
 

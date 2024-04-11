@@ -1,9 +1,9 @@
+**Recipient of the second-place prize at the Hack With A Pro Hackathon, hosted by Acts2Fellowship**
+
 # BruinsHaveClass
 
 - BruinsHaveClass is a unique mobile application designed to incentivize students to attend classes through a Tamagotchi-style reward system. By nurturing a virtual pet Bruin, users must attend their scheduled classes to earn rewards and keep their Bruin healthy and happy.
 - Keep your Bruin happy and healthy by attending your classes with BruinsHaveClass!
-
-- **Recipient of the second-place prize at the Hack With A Pro Hackathon, hosted by Acts2Fellowship**
 
 ## Overview
 
